@@ -3,16 +3,16 @@
  
 ## Зависимости
 
-	* Версия python 3.7x
+	* Версия python >= 3.7x
 	
 ```
-pip install https://github.com/kamnsv/ru_number_to text.git
+pip install https://github.com/kamnsv/ru_number_to_text/archive/refs/heads/master.zip
 pip install -r requirements.txt 
 ```
 download https://models.silero.ai/models/tts/ru/ru_v3.pt
 
 
-## Запуск
+## Запускs
 
 ```
 python server.py [PORT] [HOST]

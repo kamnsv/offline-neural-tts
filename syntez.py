@@ -6,23 +6,26 @@ import yaml
 from transliterate import translit
 from pathlib import Path
 
-sys.path.append('ru_number_to_text-master')
 from num2t4ru import num2text 
 
 torch.set_grad_enabled(False)
 device = torch.device('cpu')
 torch.set_num_threads(4) 
 
-with open('options.yml', 'r', encoding="utf-8") as y:   
-    OPTIONS = yaml.safe_load(y)
-DEFAULT = OPTIONS['syntez']
-PARAMS = OPTIONS['params']
-
 FILE_V3 = 'ru_v3.pt'
 
 DIR_CACH    = 'cach'
 if not os.path.isdir(DIR_CACH):
     os.mkdir(DIR_CACH)
+    
+FILE_OPT  = os.path.join('yamls', 'options.yml')
+FILE_DICT = os.path.join('yamls', 'dict.yml')
+
+with open(FILE_OPT, 'r', encoding="utf-8") as y:   
+    OPTIONS = yaml.safe_load(y)
+DEFAULT = OPTIONS['syntez']
+PARAMS = OPTIONS['params']
+
     
 SAMPLE_RATE = DEFAULT.get('sample_rate', 48000)
 SPEAKER_V3 = DEFAULT.get('speaker', 'xenia')
@@ -74,8 +77,8 @@ def wlegal(txt):
     words = txt.split(' ')
     
     ilegals = {}
-    if os.path.isfile('dict.yml'):
-        with open('dict.yml', 'r', encoding="utf-8") as y:   
+    if os.path.isfile(FILE_DICT):
+        with open(FILE_DICT, 'r', encoding="utf-8") as y:   
             ilegals = yaml.safe_load(y) 
         w = ilegals.get('word', {})
         
@@ -87,13 +90,12 @@ def wlegal(txt):
     
 def flegal(txt):
     ilegals = {}
-    if os.path.isfile('dict.yml'):
-        with open('dict.yml', 'r', encoding="utf-8") as y:   
+    if os.path.isfile(FILE_DICT):
+        with open(FILE_DICT, 'r', encoding="utf-8") as y:   
             ilegals = yaml.safe_load(y) 
         f = ilegals.get('full', {})
         if f.get(txt):
-            return f[txt]
-    print(f)        
+            return f[txt]    
     return txt  
             
 class V3:
@@ -149,9 +151,10 @@ class V3:
                 trans=True, 
                 abr=True,
                 rw=False):
-        print(text)
+        print('in:', text)
         bname = re.sub('[^\w\-_\. ]', '_', text)
         fname = os.path.join(DIR_CACH, f'{bname}.wav') if path is None else path
+        print('save:', fname)
         if os.path.isfile(fname):
             if rw: 
                 os.remove(fname)
@@ -160,7 +163,7 @@ class V3:
                 return fname
         
         ssml  = '<speak>\r\n%s</speak>' % fix(text)
-        print(ssml)
+        print('out:', ssml)
         self.model.save_wav(ssml_text=ssml,
                             speaker=self.get_name(speaker),
                             sample_rate=sample_rate,

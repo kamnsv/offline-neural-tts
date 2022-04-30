@@ -8,36 +8,13 @@ from syntez import *
 
 syntez = V3()
 
+FILE_INDEX = os.path.join('html', 'index.htm')
+
 def start(serverPort=80, hostName='localhost'):   
     
     class WebServer(BaseHTTPRequestHandler):
-        home = '''
-            <form method=post id=form>
-               %s
-                <div>
-                    text: <textarea name=text></textarea>
-                </div>
-                <input type=submit />
-            </form>
-            <ul id=cach>%s</ul>
-            <script>
-                document.getElementById("form").onsubmit = async (e) => {
-                    e.preventDefault();
-                    var data = {};
-                    (new FormData(e.target)).forEach(function(value, key){
-                        data[key] = value;
-                    });
-                    console.log(data);
-                    var response = await fetch('/', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify(data),
-                    });
-                    var a = await response.text();
-                    document.querySelector("#cach").innerHTML = '<li><a target=_blank href="/'+a+'">'+a+'</a></li>' + document.querySelector("#cach").innerHTML;
-                };
-            </script>
-            '''
+        with open(FILE_INDEX, 'r', encoding="utf-8") as f:
+            home = f.read()
             
         def do_GET(self):
             if '/favicon.ico' == self.path: 
@@ -96,7 +73,7 @@ def start(serverPort=80, hostName='localhost'):
             self.send_response(200)
             self.send_header('Content-type', 'text/html; charset=utf-8')
             self.end_headers()
-            self.wfile.write(bytes(self.home % (self.form(), self.cach()), 'utf-8'))
+            self.wfile.write(bytes(self.home % {'form': self.form(), 'cach': self.cach()}, 'utf-8'))
         
         def parse_POST(self):
             ctype, pdict = parse_header(self.headers['content-type'])

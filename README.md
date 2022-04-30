@@ -41,4 +41,4 @@ header 'Content-Type: application/json'
     "trans": "on" 
 }'
 ```
-Ответ: `/[TEXT]`
+Ответ: `/Добрый день_ Как ваши дел_а_`

@@ -12,7 +12,7 @@ pip install -r requirements.txt
 download https://models.silero.ai/models/tts/ru/ru_v3.pt
 
 
-## Запускs
+## Запуск
 
 ```
 python server.py [PORT] [HOST]

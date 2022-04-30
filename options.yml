@@ -1,0 +1,11 @@
+﻿params:
+    size_cach: 2 # размер кэша в мегабайтах
+syntez:
+    speaker: xenia     # aidar baya kseniya random xenia
+    sample_rate: 48000 # 8000 24000 48000
+    accent: on # расстановка ударений
+    yo: off    # фиксинг Ё
+    digit: on  # использование словаря
+    abr: on    # фиксинг аббревиатур
+    trans: on  # чтение транслитом лаинтицы 
+    rw: off    # кэшировать или перезаписывать 

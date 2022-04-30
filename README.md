@@ -41,4 +41,4 @@ header 'Content-Type: application/json'
     "trans": "on" 
 }'
 ```
-Ответ: `http://[HOST]:[PORT]/[TEXT]`
+Ответ: `/[TEXT]`

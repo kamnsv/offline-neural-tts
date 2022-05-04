@@ -20,14 +20,14 @@ python server.py [PORT] [HOST]
 
 ## Обращение
 
-* GET запросы
+### GET запросы
 
 Запрос: `http://[HOST]:[PORT]/[TEXT]`
 
-Ответ: > header 'Content-type: audio/wav'
+> **Ответ:**  `header 'Content-type: audio/wav'`
 
-* POST запросы
-Запрос: 
+### POST запросы
+
 ```
 header 'Content-Type: application/json' 
 '{
@@ -41,4 +41,5 @@ header 'Content-Type: application/json'
     "trans": "on" 
 }'
 ```
-Ответ: `/Добрый день_ Как ваши дел_а_`
+
+> **Ответ:** `/Добрый день_ Как ваши дел_а_`

@@ -10,7 +10,8 @@
 pip install https://github.com/kamnsv/ru_number_to_text/archive/refs/heads/master.zip
 pip install -r requirements.txt 
 ```
-download https://models.silero.ai/models/tts/ru/ru_v3.pt
+
+> Скачать в корень https://models.silero.ai/models/tts/ru/ru_v3.pt
 
 
 ## Запуск

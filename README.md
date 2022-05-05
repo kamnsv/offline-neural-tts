@@ -4,6 +4,7 @@
 ## Зависимости
 
 	* Версия python >= 3.7x
+	* CPU с поддержкой инструкций AVX2
 	
 ```
 pip install https://github.com/kamnsv/ru_number_to_text/archive/refs/heads/master.zip

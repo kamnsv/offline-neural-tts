@@ -23,3 +23,4 @@ word: # заменяет каждое слово целиком
     №: номер
     ФБР: фээбэээр
     ВУЗ: вуз
+    робот: робот <prosody pitch="x-low">робот</prosody> <prosody pitch="low">робот</prosody> <prosody pitch="medium">робот</prosody> <prosody pitch="high">робот</prosody> <prosody pitch="x-high">робот</prosody> <prosody pitch="robot">робот</prosody>

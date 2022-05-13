@@ -14,7 +14,7 @@ torch.set_num_threads(4)
 
 FILE_V3 = 'ru_v3.pt'
 
-DIR_CACH    = 'cach'
+DIR_CACH = 'cach'
 if not os.path.isdir(DIR_CACH):
     os.mkdir(DIR_CACH)
     
@@ -67,15 +67,16 @@ def fecran(txt):
 def fix(txt, *, digit=True, trans=True, abr=True, word=True, full=True): 
     txt = fecran(txt)
     if full:  txt = flegal(txt)
+    if trans: txt = ftrans(txt)
     if word:  txt = wlegal(txt)
     if digit: txt = fdigit(txt)
-    if trans: txt = ftrans(txt)
     if abr:   txt = fabr(txt)
     return txt
     
 def wlegal(txt):
-    words = txt.split(' ')
-    
+    txtcls = re.sub('[^\w\-_\.\+ ]', '', txt)
+    words = txtcls.split(' ')
+    print(txtcls)
     ilegals = {}
     if os.path.isfile(FILE_DICT):
         with open(FILE_DICT, 'r', encoding="utf-8") as y:   
@@ -152,7 +153,7 @@ class V3:
                 abr=True,
                 rw=False):
         print('in:', text)
-        bname = re.sub('[^\w\-_\. ]', '_', text)
+        bname = re.sub('[^\w\-_\.\+ ]', '_', text)
         fname = os.path.join(DIR_CACH, f'{bname}.wav') if path is None else path
         print('save:', fname)
         if os.path.isfile(fname):

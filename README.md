@@ -1,15 +1,19 @@
 # offline-neural-tts
- Офлайн сервер синтеза речи на нейронных сетях
- 
+Офлайн сервер синтеза речи на нейронных сетях
+
+> Основа синтеза речи взята [здесь](https://github.com/snakers4/silero-models)
+
 ## Зависимости
 
-	* Версия python >= 3.7x
+	* Версия python >= 3.7x (64-bit)
+	* CPU с поддержкой инструкций AVX2
 	
 ```
 pip install https://github.com/kamnsv/ru_number_to_text/archive/refs/heads/master.zip
 pip install -r requirements.txt 
 ```
-download https://models.silero.ai/models/tts/ru/ru_v3.pt
+
+> Скачать в корень https://models.silero.ai/models/tts/ru/ru_v3.pt
 
 
 ## Запуск
@@ -20,14 +24,14 @@ python server.py [PORT] [HOST]
 
 ## Обращение
 
-* GET запросы
+### GET запросы
 
 Запрос: `http://[HOST]:[PORT]/[TEXT]`
 
-Ответ: > header 'Content-type: audio/wav'
+> **Ответ:**  `header 'Content-type: audio/wav'`
 
-* POST запросы
-Запрос: 
+### POST запросы
+
 ```
 header 'Content-Type: application/json' 
 '{
@@ -41,4 +45,5 @@ header 'Content-Type: application/json'
     "trans": "on" 
 }'
 ```
-Ответ: `/Добрый день_ Как ваши дел_а_`
+
+> **Ответ:** `/Добрый день_ Как ваши дел_а_`

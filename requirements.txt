@@ -8,4 +8,8 @@ transliterate
 typing_extensions
 urllib3
 numpy
+<<<<<<< HEAD
 torch
+=======
+torch
+>>>>>>> 1b35607748c0998100c1d7853e8624996dbcb608

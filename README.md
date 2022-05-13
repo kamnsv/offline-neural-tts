@@ -21,6 +21,7 @@ pip install -r requirements.txt
 ```
 python server.py [PORT] [HOST]
 ```
+> по умолчанию PORT=80 HOST=localhost
 
 ## Обращение
 
@@ -46,4 +47,4 @@ header 'Content-Type: application/json'
 }'
 ```
 
-> **Ответ:** `/Добрый день_ Как ваши дел_а_`
+> **Ответ:** `/Добрый день_ Как ваши дел+а_`
